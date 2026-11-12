@@ -30,7 +30,7 @@ export function Logo({ className = "", asLink = true, size = "md" }: LogoProps) 
   if (!asLink) return mark;
 
   return (
-    <Link href="/" aria-label="MDH Technologies — home" className="inline-flex py-2">
+    <Link href="/" className="inline-flex py-2">
       {mark}
     </Link>
   );

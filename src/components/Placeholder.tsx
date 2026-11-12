@@ -34,7 +34,7 @@ export function ImagePlaceholderLabel({
       className={`block font-sans text-[0.6rem] font-medium uppercase leading-snug tracking-[0.12em] ${className}`}
     >
       {labels[kind]}
-      {path && <span className="mt-1 block normal-case tracking-normal opacity-70">{path}</span>}
+      {path && <span className="mt-1 block normal-case tracking-normal">{path}</span>}
     </span>
   );
 }

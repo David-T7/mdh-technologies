@@ -39,7 +39,7 @@ const organizationJsonLd = {
   name: company.name,
   legalName: company.legalName,
   url: company.url,
-  logo: `${company.url}/icon`,
+  logo: `${company.url}/apple-icon`,
   email: company.email,
   telephone: company.phone.replace(/\s/g, ""),
   foundingDate: company.founded,

@@ -35,7 +35,7 @@ export function Hero() {
 
         <h1
           id="hero-title"
-          className="display rise rise-1 mt-auto pt-16 text-[3.5rem] leading-[0.94] sm:text-[4.6rem] md:text-[7rem] xl:text-[9.4rem] wide:text-[10.5rem]"
+          className="display rise-move mt-auto pt-16 text-[3.5rem] leading-[0.94] sm:text-[4.6rem] md:text-[7rem] xl:text-[9.4rem] wide:text-[10.5rem]"
         >
           <span className="block text-balance">{h.headline}</span>
           <span className="block italic text-gold">{h.headlineEmphasis}</span>
@@ -78,7 +78,7 @@ export function PageHero({ eyebrow, heading, intro }: { eyebrow: string; heading
       />
       <div className="wrap relative pb-16 pt-16 md:pb-24 md:pt-28">
         <p className="eyebrow rise">{eyebrow}</p>
-        <h1 className="display rise rise-1 mt-8 max-w-[16ch] text-[3rem] md:text-[5.6rem] xl:text-[7rem]">
+        <h1 className="display rise-move mt-8 max-w-[16ch] text-[3rem] md:text-[5.6rem] xl:text-[7rem]">
           {heading}
         </h1>
         {intro && (

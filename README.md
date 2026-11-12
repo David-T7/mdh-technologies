@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mdh technologies — website
 
-## Getting Started
+The company website for **MDH Technologies PLC**, built with Next.js (App Router), TypeScript, Tailwind CSS and Motion. Every page is static and the site is designed for low-end Android phones on slow mobile data.
 
-First, run the development server:
+---
+
+## Run it locally
+
+You need **Node.js 20 or newer**.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before pushing, check that everything still builds:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Editing the content
 
-To learn more about Next.js, take a look at the following resources:
+**All the words on the site live in one file: [`src/content/site.ts`](src/content/site.ts).** You never need to open a component to change text.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| To change… | Edit in `site.ts` |
+|---|---|
+| Phone, email, address, GitHub, app links | `company` |
+| Hero, mission lines, product, services, team, contact copy | the `en` object |
+| A founder's title or bio | `en.team.members` |
+| Add/remove a service | `en.services.items` |
+| Testimonials (empty on purpose) | `testimonials` — add only real, approved quotes |
+| Show/hide the gold `[CONFIRM: …]` tags and image-placeholder labels | `flags.showPlaceholders` — **set to `false` before launch** |
+| Language switcher | `flags.showLanguageSwitcher` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+When a fact is confirmed, delete its `confirm: "…"` line.
 
-## Deploy on Vercel
+### Adding images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Image | Put the file at | Then set in `site.ts` |
+|---|---|---|
+| Product screenshot (flagship) | `public/products/etlh-home.png` | `product.heroScreenshot: "/products/etlh-home.png"` |
+| Product story screens (6) | `public/products/etlh-01.png` … `etlh-06.png` | each `story.panels[n].screenshot` |
+| Founder portraits | `public/team/<firstname>.jpg` | each `team.members[n].portrait` |
+| Official logo | `public/brand/` | replace the markup in `src/components/Logo.tsx` with the file, unchanged |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use real screenshots and photos only — portrait 9:19.5 for app screens, 4:5 for portraits. Images are optimised and lazy-loaded automatically by `next/image`.
+
+### Brand colours
+
+The palette is a placeholder. Swap the six `--brand-*` values at the top of [`src/app/globals.css`](src/app/globals.css) and the whole site follows (light and dark mode).
+
+### Adding Amharic
+
+1. In `site.ts`, create an `am` object of type `SiteCopy` (copy `en` and translate), or put it in `src/content/site.am.ts` and import it.
+2. Add it to the `copy` registry: `export const copy = { en, am }`.
+3. Add `/am` routes (or move pages under `app/[locale]/`) that call `getCopy("am")`.
+4. Set `flags.showLanguageSwitcher = true`.
+
+The Ethiopic fonts (Noto Serif/Sans Ethiopic) are already installed and only download when Ge'ez characters are on the page.
+
+---
+
+## Contact form
+
+The form works two ways:
+
+- **With Resend** — if `RESEND_API_KEY` is set, messages are sent from the server.
+- **Without it** — the button opens the visitor's email app with the message filled in.
+
+Environment variables (see `.env.example`):
+
+| Variable | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Turns on server-side sending |
+| `CONTACT_TO` | Inbox that receives messages (default: the company email) |
+| `CONTACT_FROM` | Verified sender, e.g. `MDH Website <web@mdhtechnologies.com>`. Until your domain is verified in Resend, its test sender only delivers to the Resend account owner. |
+
+---
+
+## Deploy to Vercel
+
+1. Push this repository to GitHub (e.g. `github.com/mdhtechnologies/website`).
+2. In Vercel: **Add New → Project → Import** the repository. Framework: Next.js (detected). No build settings to change.
+3. Optional: under **Settings → Environment Variables**, add the contact-form variables above.
+4. Deploy. Every push to `main` redeploys automatically.
+
+### Connect a custom domain
+
+1. Vercel project → **Settings → Domains → Add** your domain (e.g. `mdhtechnologies.com` and `www.mdhtechnologies.com`).
+2. At your domain registrar, add the DNS records Vercel shows (usually an `A` record for the apex domain and a `CNAME` for `www`).
+3. Update `company.url` in `site.ts` to the final domain so the sitemap, Open Graph image and structured data use it.
+
+---
+
+## Project map
+
+```
+src/
+  app/                 routes, SEO files (sitemap, robots, OG image, icons), server action
+  components/          Logo, Header, Footer, PhoneFrame, StickyStory, ServiceList, Team, NameOrigin, ContactForm…
+  components/sections.tsx   the page sections, assembled by each route
+  content/site.ts      ← all copy, facts and flags
+  fonts/               self-hosted font files (no Google Fonts requests)
+  lib/fonts.ts         font loading
+```
+
+Motion is subtle and switches off completely for visitors who set *reduce motion* on their device.
