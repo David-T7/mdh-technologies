@@ -20,6 +20,7 @@
   --line: #dcd8cf;
   --surface: #efece4;
   --link: var(--brand-green);
+  --confirm: #8a5a12;
 
   /* Ink sections (always dark) */
   --ink-bg: var(--brand-ink);
@@ -52,6 +53,7 @@
     --line: #2c2b29;
     --surface: #1b1a19;
     --link: #6fbfa6;
+    --confirm: var(--brand-gold);
   }
 }
 
@@ -113,6 +115,7 @@ body {
   --line: var(--ink-line);
   --surface: #151516;
   --link: var(--brand-gold);
+  --confirm: var(--brand-gold);
 }
 
 .wrap {

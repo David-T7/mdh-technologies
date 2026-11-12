@@ -43,7 +43,7 @@ export function TeamMember({ member, large = false }: { member: Member; large?: 
         {member.role}
         <Confirm note={member.confirm} />
       </p>
-      <p className="mt-1 text-sm text-muted">{member.location}</p>
+      {member.location && <p className="mt-1 text-sm text-muted">{member.location}</p>}
       <p className={`mt-4 leading-relaxed text-muted ${large ? "max-w-[46ch] text-lg" : "max-w-[40ch]"}`}>
         {member.bio}
       </p>
@@ -77,19 +77,25 @@ export function Team({ members, closing }: { members: Member[]; closing: string 
         <Reveal className="md:col-span-5 md:row-span-2">
           <TeamMember member={lead} large />
         </Reveal>
-        <div className="grid gap-16 sm:grid-cols-2 md:col-span-7 md:grid-cols-2 md:gap-x-10">
-          {rest.map((m, i) => (
-            <Reveal
-              key={m.name}
-              delay={i * 0.08}
-              className={i === 0 ? "md:mt-40" : i === 1 ? "md:mt-0" : "md:col-start-2 md:-mt-24"}
-            >
-              <TeamMember member={m} />
-            </Reveal>
-          ))}
+        {/* Two staggered columns: the first sits lower, the second carries the rest */}
+        <div className="grid gap-16 sm:grid-cols-2 md:col-span-7 md:gap-x-10">
+          <div className="flex flex-col gap-16 md:pt-40">
+            {rest.filter((_, i) => i % 2 === 0).map((m, i) => (
+              <Reveal key={m.name} delay={i * 0.08}>
+                <TeamMember member={m} />
+              </Reveal>
+            ))}
+          </div>
+          <div className="flex flex-col gap-16 md:gap-24">
+            {rest.filter((_, i) => i % 2 === 1).map((m, i) => (
+              <Reveal key={m.name} delay={0.08 + i * 0.08}>
+                <TeamMember member={m} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
-      <p className="display mt-20 max-w-[24ch] text-[1.8rem] italic text-muted md:mt-28 md:text-[2.4rem]">
+      <p className="display mt-20 max-w-[30ch] text-[1.8rem] italic text-muted md:mt-28 md:text-[2.4rem]">
         {closing}
       </p>
     </div>

@@ -33,7 +33,7 @@ export function PhoneFrame({
 
   return (
     <div
-      className={`relative mx-auto aspect-[9/19.5] w-full max-w-[300px] rounded-[2.4rem] p-[9px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.55)] ${frame} ${className}`}
+      className={`relative mx-auto aspect-[9/19.5] w-full max-w-[250px] md:max-w-[300px] rounded-[2.4rem] p-[9px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.55)] ${frame} ${className}`}
     >
       <div className="relative h-full w-full overflow-hidden rounded-[1.9rem] bg-[#f3efe6] text-[#3a3936]">
         {src ? (

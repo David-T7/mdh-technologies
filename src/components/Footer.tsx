@@ -17,7 +17,7 @@ export function Footer() {
           </p>
         </div>
 
-        <nav aria-label="Footer" className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-3">
+        <nav aria-label="Footer" className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-[1fr_1fr_1.5fr]">
           <div>
             <h2 className="eyebrow">{site.footer.navHeading}</h2>
             <ul className="mt-5 space-y-1">
@@ -65,7 +65,7 @@ export function Footer() {
               <a href={company.phoneHref} className="u-link block w-fit py-1.5">
                 {company.phone}
               </a>
-              <a href={`mailto:${company.email}`} className="u-link block w-fit break-all py-1.5">
+              <a href={`mailto:${company.email}`} className="u-link block w-fit py-1.5 [overflow-wrap:anywhere]">
                 {company.email}
               </a>
               <a

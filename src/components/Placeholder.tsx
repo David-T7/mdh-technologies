@@ -5,7 +5,7 @@ export function Confirm({ note, className = "" }: { note?: string; className?: s
   if (!note || !flags.showPlaceholders) return null;
   return (
     <span
-      className={`ml-2 inline-block border border-gold/70 px-1.5 py-0.5 align-middle font-sans text-[0.62rem] font-medium uppercase not-italic leading-none tracking-[0.08em] text-gold ${className}`}
+      className={`ml-2 inline-block border border-[color:var(--confirm)] px-1.5 py-0.5 align-middle font-sans text-[0.62rem] font-medium uppercase not-italic leading-none tracking-[0.08em] text-[color:var(--confirm)] ${className}`}
     >
       [CONFIRM: {note}]
     </span>

@@ -28,7 +28,7 @@ export function Hero() {
       />
 
       <div className="wrap relative flex min-h-[calc(100svh-var(--header-h))] flex-col pb-10 pt-10 md:pb-14 md:pt-16">
-        <div className="rise flex items-center justify-between text-[0.8rem] text-ink-muted">
+        <div className="rise flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[0.8rem] text-ink-muted">
           <p className="eyebrow">{h.eyebrow}</p>
           <p className="eyebrow">Addis Ababa — Est. 2026</p>
         </div>
@@ -37,7 +37,7 @@ export function Hero() {
           id="hero-title"
           className="display rise rise-1 mt-auto pt-16 text-[3.5rem] leading-[0.94] sm:text-[4.6rem] md:text-[7rem] xl:text-[9.4rem] wide:text-[10.5rem]"
         >
-          <span className="block">{h.headline}</span>
+          <span className="block text-balance">{h.headline}</span>
           <span className="block italic text-gold">{h.headlineEmphasis}</span>
         </h1>
 

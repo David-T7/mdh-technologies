@@ -83,7 +83,7 @@ export function StickyStory({ panels }: { panels: StoryPanel[] }) {
             </div>
             <p
               aria-hidden="true"
-              className="mt-2 font-ethiopic text-[1.4rem] leading-none text-gold [writing-mode:vertical-rl]"
+              className="mt-2 whitespace-nowrap font-ethiopic text-[1.3rem] leading-none text-gold"
             >
               {geezNumeral(active + 1)} / {geezNumeral(panels.length)}
             </p>

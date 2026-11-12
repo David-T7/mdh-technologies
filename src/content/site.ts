@@ -49,7 +49,8 @@ export type TeamMember = {
   initials: string;
   role: string;
   bio: string;
-  location: string;
+  /** Optional — only where stated */
+  location?: string;
   /** e.g. "/team/mhreteabe.jpg" — null shows an initials monogram */
   portrait: string | null;
   links: Link[];
@@ -357,7 +358,6 @@ const en: SiteCopy = {
         initials: "MT",
         role: "Co-founder & CEO",
         confirm: "Title",
-        location: "Addis Ababa",
         bio: "Software engineer. Erasmus Mundus scholar with master's studies at LUT University, Università dell'Aquila and VU Amsterdam; former software engineering intern at Uber Amsterdam. Education-technology consultant at Abenet Community School, Addis Ababa.",
         portrait: null,
         links: [
@@ -373,7 +373,6 @@ const en: SiteCopy = {
         initials: "DT",
         role: "Co-founder, Frontend & Product Experience",
         confirm: "Title",
-        location: "Addis Ababa",
         bio: "Builds ET Learning Hub's frontend and its game-based learning.",
         portrait: null,
         links: [],

@@ -33,9 +33,9 @@ export function NameOrigin({ letters }: { letters: Letter[] }) {
             >
               <span>{l.letter}</span>
               <span
-                className="inline-block overflow-hidden italic text-gold transition-[max-width,opacity] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="inline-block overflow-hidden pr-[0.12em] italic text-gold transition-[max-width,opacity] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
-                  maxWidth: expanded ? `${rest.length * 0.62}em` : "0em",
+                  maxWidth: expanded ? `${rest.length * 0.72}em` : "0em",
                   opacity: expanded ? 1 : 0,
                   transitionDelay: expanded ? `${i * 160}ms` : "0ms",
                 }}
