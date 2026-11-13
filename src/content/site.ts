@@ -167,6 +167,7 @@ export type SiteCopy = {
       email: string;
       phone: string;
       organisation: string;
+      subject: string;
       message: string;
       submit: string;
       sending: string;
@@ -640,6 +641,7 @@ const en: SiteCopy = {
       email: "Email",
       phone: "Phone",
       organisation: "Organisation",
+      subject: "Subject",
       message: "Message",
       submit: "Send Message",
       sending: "Sending…",

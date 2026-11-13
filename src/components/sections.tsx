@@ -12,7 +12,7 @@ import { ServiceList } from "./ServiceList";
 import { StickyStory } from "./StickyStory";
 import { Team } from "./Team";
 
-const canSend = Boolean(process.env.RESEND_API_KEY);
+const canSend = Boolean(process.env.BREVO_API_KEY && process.env.CONTACT_FROM);
 
 /* ── 1 · Hero ─────────────────────────────────────────────────────────── */
 

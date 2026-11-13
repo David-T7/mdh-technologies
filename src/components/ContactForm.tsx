@@ -52,7 +52,7 @@ function Field({
 }
 
 /**
- * When `canSend` is true (RESEND_API_KEY is configured) the form posts to a server
+ * When `canSend` is true (BREVO_API_KEY and CONTACT_FROM are set) the form posts to a server
  * action. Otherwise it opens the visitor's email app with the message pre-filled.
  */
 export function ContactForm({ canSend }: { canSend: boolean }) {
@@ -64,7 +64,8 @@ export function ContactForm({ canSend }: { canSend: boolean }) {
     e.preventDefault();
     const d = new FormData(e.currentTarget);
     const get = (k: string) => String(d.get(k) ?? "").trim();
-    const subject = `Website enquiry — ${get("name")}${get("organisation") ? `, ${get("organisation")}` : ""}`;
+    const subject =
+      get("subject") || `Website enquiry — ${get("name")}${get("organisation") ? `, ${get("organisation")}` : ""}`;
     const body = [
       get("message"),
       "",
@@ -98,6 +99,7 @@ export function ContactForm({ canSend }: { canSend: boolean }) {
         <Field name="phone" label={f.phone} type="tel" autoComplete="tel" />
         <Field name="organisation" label={f.organisation} autoComplete="organization" />
       </div>
+      <Field name="subject" label={f.subject} />
       <Field name="message" label={f.message} required textarea />
 
       {/* Honeypot — hidden from people and assistive tech */}

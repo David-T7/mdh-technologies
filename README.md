@@ -68,16 +68,24 @@ The Ethiopic fonts (Noto Serif/Sans Ethiopic) are already installed and only dow
 
 The form works two ways:
 
-- **With Resend** — if `RESEND_API_KEY` is set, messages are sent from the server.
-- **Without it** — the button opens the visitor's email app with the message filled in.
+- **With Brevo** — if `BREVO_API_KEY` and `CONTACT_FROM` are set, messages are sent from the server through Brevo's transactional email API.
+- **Without them** — the button opens the visitor's email app with the message filled in.
 
 Environment variables (see `.env.example`):
 
 | Variable | Purpose |
 |---|---|
-| `RESEND_API_KEY` | Turns on server-side sending |
+| `BREVO_API_KEY` | Turns on server-side sending (Brevo → SMTP & API → API keys) |
+| `CONTACT_FROM` | A sender verified in Brevo, e.g. `MDH Technologies Team <info@mdhtechnologies.com>` |
 | `CONTACT_TO` | Inbox that receives messages (default: the company email) |
-| `CONTACT_FROM` | Verified sender, e.g. `MDH Website <web@mdhtechnologies.com>`. Until your domain is verified in Resend, its test sender only delivers to the Resend account owner. |
+
+Brevo setup:
+
+1. Create a free Brevo account.
+2. **Senders, domains & dedicated IPs → Domains**: add `mdhtechnologies.com` and add the DNS records it shows (DKIM, DMARC, Brevo code) at your domain host. Until then you can verify a single sender address instead.
+3. **SMTP & API → API keys**: generate a key and set it as `BREVO_API_KEY`.
+4. **Security → Authorised IPs**: turn IP blocking off (or the key is rejected from Vercel, whose server IPs change).
+5. Send a test from the live contact page. Failures are logged in the server logs as `Contact form: …`.
 
 ---
 

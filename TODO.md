@@ -33,7 +33,7 @@ Real files only — no stock or AI-generated images.
 
 ## Setup
 
-- [ ] Create a Resend account, verify the domain, and set `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` in Vercel (otherwise the form opens the visitor's email app).
+- [ ] Create a Brevo account, verify `mdhtechnologies.com`, turn off Authorised-IP blocking, and set `BREVO_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` in Vercel (otherwise the form opens the visitor's email app). See README "Contact form".
 - [ ] Push to `github.com/mdhtechnologies` and import into Vercel (see README).
 - [ ] Testimonials — leave `testimonials` empty until there are real, approved quotes.
 - [ ] Amharic version — see README "Adding Amharic".
