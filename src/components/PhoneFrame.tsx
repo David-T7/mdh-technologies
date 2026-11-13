@@ -1,11 +1,10 @@
 import Image from "next/image";
+import { LOGO_MARK_PATH } from "@/lib/brand";
 import { ImagePlaceholderLabel } from "./Placeholder";
 
 type PhoneFrameProps = {
   src: string | null;
   alt: string;
-  /** Shown large on the placeholder screen, so empty frames still differ */
-  glyph?: string;
   /** The file path the founders should drop the screenshot into */
   expectedPath?: string;
   priority?: boolean;
@@ -20,7 +19,6 @@ type PhoneFrameProps = {
 export function PhoneFrame({
   src,
   alt,
-  glyph = "ሀ",
   expectedPath = "/public/products/etlh-*.png",
   priority = false,
   className = "",
@@ -33,6 +31,7 @@ export function PhoneFrame({
 
   return (
     <div
+      suppressHydrationWarning data-tilt
       className={`relative mx-auto aspect-[9/19.5] w-full max-w-[250px] md:max-w-[300px] rounded-[2.4rem] p-[9px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.55)] ${frame} ${className}`}
     >
       <div className="relative h-full w-full overflow-hidden rounded-[1.9rem] bg-[#f3efe6] text-[#3a3936]">
@@ -47,17 +46,22 @@ export function PhoneFrame({
           />
         ) : (
           <div className="flex h-full flex-col justify-between p-6" role="img" aria-label={`Placeholder: ${alt}`}>
-            <span aria-hidden="true" className="font-ethiopic text-[7rem] leading-none text-[#c9c2b2]">
-              {glyph}
-            </span>
+            <div aria-hidden="true">
+              <svg viewBox="30 70 472 162" className="h-auto w-[55%] text-[#d9962b]">
+                <path d={LOGO_MARK_PATH} fill="currentColor" />
+              </svg>
+              <p className="mt-6 text-[1.05rem] font-medium leading-snug text-[#2a2927]">{alt}</p>
+            </div>
             <ImagePlaceholderLabel kind="screenshot" path={expectedPath} className="text-[#5e5b55]" />
           </div>
         )}
-        {/* speaker slot */}
-        <span
-          aria-hidden="true"
-          className="absolute left-1/2 top-2.5 h-[18px] w-[30%] -translate-x-1/2 rounded-full bg-[#0b0b0c]"
-        />
+        {/* speaker slot — only on placeholders; real screenshots carry their own top bar */}
+        {!src && (
+          <span
+            aria-hidden="true"
+            className="absolute left-1/2 top-2.5 h-[18px] w-[30%] -translate-x-1/2 rounded-full bg-[#0b0b0c]"
+          />
+        )}
       </div>
     </div>
   );

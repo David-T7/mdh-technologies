@@ -28,9 +28,9 @@ npm run lint
 
 | To change… | Edit in `site.ts` |
 |---|---|
-| Phone, email, address, GitHub, app links | `company` |
+| Phone, email, address, app links | `company` |
 | Hero, mission lines, product, services, team, contact copy | the `en` object |
-| A founder's title or bio | `en.team.members` |
+| A founder's title, bio or full profile | `en.team.members` (profile pages live at `/team/<slug>`) |
 | Add/remove a service | `en.services.items` |
 | Testimonials (empty on purpose) | `testimonials` — add only real, approved quotes |
 | Show/hide the gold `[CONFIRM: …]` tags and image-placeholder labels | `flags.showPlaceholders` — **set to `false` before launch** |
@@ -42,16 +42,16 @@ When a fact is confirmed, delete its `confirm: "…"` line.
 
 | Image | Put the file at | Then set in `site.ts` |
 |---|---|---|
-| Product screenshot (flagship) | `public/products/etlh-home.png` | `product.heroScreenshot: "/products/etlh-home.png"` |
-| Product story screens (6) | `public/products/etlh-01.png` … `etlh-06.png` | each `story.panels[n].screenshot` |
-| Founder portraits | `public/team/<firstname>.jpg` | each `team.members[n].portrait` |
-| Official logo | `public/brand/` | replace the markup in `src/components/Logo.tsx` with the file, unchanged |
+| Product screenshot (flagship) | `public/products/etlh-telegram.png` | `product.heroScreenshot` |
+| Product story screens (6) | `public/products/etlh-*.png` | each `story.panels[n].screenshot` |
+| Founder portraits | `public/team/<slug>.jpg` (or .png/.webp) — `mhreteabe`, `dawit` | picked up automatically; no code change |
+| Official logo | `public/brand/` (originals) · `src/lib/brand.ts` (paths used by the site) | done — rendered inline by `src/components/Logo.tsx`, icons and OG image |
 
 Use real screenshots and photos only — portrait 9:19.5 for app screens, 4:5 for portraits. Images are optimised and lazy-loaded automatically by `next/image`.
 
 ### Brand colours
 
-The palette is a placeholder. Swap the six `--brand-*` values at the top of [`src/app/globals.css`](src/app/globals.css) and the whole site follows (light and dark mode).
+The palette is ink, paper and Ethiopian gold. Adjust the `--brand-*` values at the top of [`src/app/globals.css`](src/app/globals.css) and the whole site follows (light and dark mode).
 
 ### Adding Amharic
 
@@ -101,7 +101,7 @@ Environment variables (see `.env.example`):
 ```
 src/
   app/                 routes, SEO files (sitemap, robots, OG image, icons), server action
-  components/          Logo, Header, Footer, PhoneFrame, StickyStory, ServiceList, Team, NameOrigin, ContactForm…
+  components/          Logo, Header, Footer, PhoneFrame, StickyStory, ServiceList, Team, Beliefs, ContactForm…
   components/sections.tsx   the page sections, assembled by each route
   content/site.ts      ← all copy, facts and flags
   fonts/               self-hosted font files (no Google Fonts requests)

@@ -1,8 +1,16 @@
 import type { MetadataRoute } from "next";
-import { company } from "@/content/site";
+import { company, site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/products", "/services", "/contact"];
+  const routes = [
+    "",
+    "/about",
+    "/team",
+    "/products",
+    "/services",
+    "/contact",
+    ...site.team.members.map((m) => `/team/${m.slug}`),
+  ];
   return routes.map((path) => ({
     url: `${company.url}${path}`,
     changeFrequency: "monthly",

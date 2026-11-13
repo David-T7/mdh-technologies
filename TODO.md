@@ -6,39 +6,29 @@ Every item below is visible on the site as a gold `[CONFIRM: …]` tag or an "IM
 
 - [ ] **Domain** — `https://mdhtechnologies.com` is a placeholder. Update `company.url` once final.
 - [ ] **Mhreteabe Tesfaye Dula** — title "Co-founder & CEO".
-- [ ] **Dawit Tesfaye** — title "Co-founder, Frontend & Product Experience".
-- [ ] **Hemen Tesfaye Dula** — title "Co-founder, Content & Student Research".
-- [ ] **Kiran Singh Saud** — title "Co-founder, Engineering & User Experience".
+- [ ] **Dawit Tesfaye Dula** — title "Co-founder, Engineering & Product".
+- [ ] **Founder profiles** (`/team/mhreteabe`, `/team/dawit`) — written from the CVs; each founder should read and approve theirs. Mhreteabe's Meseret AI role was left out on purpose — add it if wanted.
 - [ ] **ERP & school systems** — keep this service on the site? (Remove the item from `services.items` if not.)
-- [ ] **Name origin wording** — "MDH comes from the founders' first initials — a company built by family." Kiran also co-founded the product; decide how to phrase this.
-- [ ] **Official brand colours** — current palette (Ink, Paper, Ethiopian Gold, Highland Green, Graphite, Stone) is a placeholder. Swap the `--brand-*` values in `src/app/globals.css`.
-- [ ] **Founder locations** — only Hemen (Italy) and Kiran (the Netherlands) are shown. Add Mhreteabe's and Dawit's if wanted (`location` in each team member).
-- [ ] **LinkedIn / GitHub** links for Dawit, Hemen and Kiran (`links` in each team member).
+- [ ] **Brand colours** — ink, paper and gold (`--brand-*` in `src/app/globals.css`). Confirm the exact gold if the brand has an official hex.
 
 ## Copy to review
 
 Written from the brief's notes rather than supplied verbatim — please read and adjust in `site.ts`:
 
 - [ ] Hero headline — options are in a comment above `hero.headline` (currently "Life doesn't have to be *this hard.*").
-- [ ] `/about` intro and the three "Why we exist" paragraphs (`why.expanded`).
+- [ ] `/about` intro and the five "Why we exist" beliefs (`why.beliefs`).
 - [ ] `/services` paragraphs (`services.items[].detail`) and the services heading/intro.
-- [ ] Team heading "Family, and a friend." and the footer line "An Ethiopian technology company. Built in Addis Ababa."
+- [ ] Team heading "The people behind it." and closing line "Two siblings, building from Addis Ababa." and the footer line "An Ethiopian technology company. Built in Addis Ababa."
 - [ ] Hero eyebrow "Addis Ababa — Est. 2026".
 
 ## Images — `IMAGE PLACEHOLDER`
 
 Real files only — no stock or AI-generated images.
 
-- [ ] **OFFICIAL APP SCREENSHOT REQUIRED** — flagship phone: `public/products/etlh-home.png` → `product.heroScreenshot`
-- [ ] **OFFICIAL APP SCREENSHOT REQUIRED** — six story screens, one per panel:
-  - [ ] `public/products/etlh-01.png` — Follows the book
-  - [ ] `public/products/etlh-02.png` — Learning as a game
-  - [ ] `public/products/etlh-03.png` — Every exam question explained
-  - [ ] `public/products/etlh-04.png` — A tutor that knows you
-  - [ ] `public/products/etlh-05.png` — In your language
-  - [ ] `public/products/etlh-06.png` — No install needed
-- [ ] **OFFICIAL PORTRAIT REQUIRED** — `public/team/mhreteabe.jpg`, `dawit.jpg`, `hemen.jpg`, `kiran.jpg` (initials monograms show until then)
-- [ ] **Official logo file** (optional) — `public/brand/`; the text wordmark is used until supplied.
+- [x] **App screenshots** — in `public/products/` (hero: `etlh-telegram.png`; story: `etlh-follows-the-book`, `etlh-ranks`, `etlh-exam-explained`, `etlh-tutor`, `etlh-languages`, `etlh-telegram`). Replace any file with a newer screenshot of the same name.
+- [ ] **Founder portraits** — removed for now. Drop `public/team/mhreteabe.jpg` and `public/team/dawit.jpg` back in when ready; they appear automatically (a user icon shows until then).
+- [ ] **Better portrait for Mhreteabe** — the current one is cropped from a small (400px) LinkedIn photo to remove the #OPENTOWORK frame, so it looks soft. A larger photo without the frame would be sharper.
+- [x] **Official logo** — from MDH-Technologies_Brand-Files, in `public/brand/` and `src/lib/brand.ts`.
 - [ ] Optional later: photographs of the team, the TM5 office, Addis Ababa, students studying.
 
 ## Setup

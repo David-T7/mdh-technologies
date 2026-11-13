@@ -43,7 +43,7 @@ export async function sendContact(_prev: ContactState, form: FormData): Promise<
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: process.env.CONTACT_FROM || "MDH Website <onboarding@resend.dev>",
-      to: process.env.CONTACT_TO || company.email,
+      to: process.env.CONTACT_TO || company.infoEmail,
       replyTo: email,
       subject: `Website enquiry — ${name}${organisation ? `, ${organisation}` : ""}`,
       text: [

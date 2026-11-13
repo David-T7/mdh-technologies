@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { Tibeb } from "./Texture";
 import { company, site } from "@/content/site";
 
 export function Footer() {
@@ -8,7 +7,6 @@ export function Footer() {
 
   return (
     <footer className="ink">
-      <Tibeb id="tibeb-footer" className="text-gold/30" />
       <div className="wrap grid gap-12 pb-10 pt-16 md:grid-cols-12 md:pt-24">
         <div className="md:col-span-5">
           <Logo size="lg" />
@@ -37,16 +35,6 @@ export function Footer() {
             <ul className="space-y-1 text-ink-muted">
               <li>
                 <a
-                  href={company.product.app}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="u-link inline-block py-1.5 hover:text-ink-fg"
-                >
-                  Web app
-                </a>
-              </li>
-              <li>
-                <a
                   href={company.product.telegram}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -65,17 +53,15 @@ export function Footer() {
               <a href={company.phoneHref} className="u-link block w-fit py-1.5">
                 {company.phone}
               </a>
-              <a href={`mailto:${company.email}`} className="u-link block w-fit py-1.5 [overflow-wrap:anywhere]">
-                {company.email}
-              </a>
-              <a
-                href={company.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="u-link block w-fit py-1.5"
-              >
-                GitHub
-              </a>
+              {[company.infoEmail].map((email) => (
+                <a
+                  key={email}
+                  href={`mailto:${email}`}
+                  className="u-link block w-fit py-1.5 [overflow-wrap:anywhere]"
+                >
+                  {email}
+                </a>
+              ))}
             </address>
           </div>
         </nav>

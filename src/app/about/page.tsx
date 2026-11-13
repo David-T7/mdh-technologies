@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { HowWeWork, NameOriginSection, PageHero, TeamSection, WhyWeExist } from "@/components/sections";
+import { HowWeWork, PageHero, TeamSection, WhyWeExist } from "@/components/sections";
+import { CtaBand, FactGrid, Purpose } from "@/components/blocks";
 import { site } from "@/content/site";
 
 const p = site.pages.about;
@@ -15,10 +16,12 @@ export default function AboutPage() {
   return (
     <>
       <PageHero eyebrow={p.title} heading={p.heading} intro={p.intro} />
-      <WhyWeExist expanded />
-      <NameOriginSection />
+      <WhyWeExist />
+      <Purpose eyebrow={p.purpose.eyebrow} items={p.purpose.items} />
       <TeamSection />
       <HowWeWork />
+      <FactGrid block={p.glance} />
+      <CtaBand cta={p.cta} />
     </>
   );
 }

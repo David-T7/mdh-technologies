@@ -1,36 +1,41 @@
 import Link from "next/link";
+import { LOGO_MARK_PATH, LOGO_VIEWBOX, LOGO_WORD_PATH } from "@/lib/brand";
 
 type LogoProps = {
   className?: string;
-  /** Render as a link to the homepage (default) or as plain text */
+  /** Render as a link to the homepage (default) or as a plain mark */
   asLink?: boolean;
   size?: "sm" | "md" | "lg";
 };
 
-const sizes = {
-  sm: { mark: "text-[1.55rem]", word: "text-[0.6rem]" },
-  md: { mark: "text-[1.9rem]", word: "text-[0.66rem]" },
-  lg: { mark: "text-[3.4rem]", word: "text-[0.9rem]" },
+const heights = {
+  sm: "h-10 md:h-12",
+  md: "h-9",
+  lg: "h-14",
 };
 
 /**
- * Plain lowercase wordmark: "mdh" + "technologies". No dots, symbols or extra marks.
- * When an official logo file is supplied in /public/brand, replace the inner markup
- * with that file (unchanged — never stretched, recoloured, outlined or shadowed).
+ * Official MDH Technologies logo (from the brand files), drawn inline so it takes
+ * the surrounding text colour: white on blue/ink sections, dark on light ones —
+ * matching the brand's White and Dark versions. Never stretch, outline or shadow it.
  */
 export function Logo({ className = "", asLink = true, size = "md" }: LogoProps) {
-  const s = sizes[size];
   const mark = (
-    <span className={`inline-flex items-baseline gap-[0.45em] leading-none ${className}`}>
-      <span className={`font-serif ${s.mark} tracking-[-0.02em]`}>mdh</span>
-      <span className={`${s.word} font-medium tracking-[0.2em] opacity-80`}>technologies</span>
-    </span>
+    <svg
+      viewBox={LOGO_VIEWBOX}
+      role="img"
+      aria-label="MDH Technologies"
+      className={`block w-auto shrink-0 ${heights[size]} ${className}`}
+    >
+      <path d={LOGO_MARK_PATH} fill="currentColor" />
+      <path d={LOGO_WORD_PATH} fill="currentColor" />
+    </svg>
   );
 
   if (!asLink) return mark;
 
   return (
-    <Link href="/" className="inline-flex py-2">
+    <Link href="/" className="inline-flex py-2" aria-label="MDH Technologies — home">
       {mark}
     </Link>
   );

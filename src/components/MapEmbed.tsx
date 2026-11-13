@@ -12,7 +12,7 @@ export function MapEmbed() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface md:aspect-[16/10]">
+    <div className="relative aspect-[4/3] w-full overflow-hidden bg-card ring-1 ring-line md:aspect-[16/10]">
       {show ? (
         <iframe
           title={`Map: ${company.address.short}`}

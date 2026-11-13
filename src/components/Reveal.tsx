@@ -19,24 +19,32 @@ type RevealProps = {
   delay?: number;
   y?: number;
   as?: "div" | "li" | "p" | "span";
+  /** Adds the cursor spotlight (see Interactions.tsx) */
+  spotlight?: boolean;
 };
 
 /**
  * Fades content up once it scrolls into view.
  * Renders a plain element (no motion at all) under prefers-reduced-motion.
  */
-export function Reveal({ children, className, delay = 0, y = 28, as = "div" }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 28, as = "div", spotlight = false }: RevealProps) {
+  const spot = spotlight ? { "data-spotlight": "", suppressHydrationWarning: true } : {};
   const reduce = useReducedMotion();
 
   if (reduce) {
     const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
+    return (
+      <Tag className={className} {...spot}>
+        {children}
+      </Tag>
+    );
   }
 
   const Tag = m[as];
   return (
     <Tag
       className={className}
+      {...spot}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}

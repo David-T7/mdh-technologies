@@ -20,12 +20,12 @@ export function LanguageSwitcher({ current = defaultLocale }: { current?: Locale
                 href={l === defaultLocale ? "/" : `/${l}`}
                 lang={l}
                 aria-current={l === current ? "true" : undefined}
-                className={l === current ? "text-ink-fg" : "text-ink-muted hover:text-ink-fg"}
+                className={l === current ? "text-fg" : "text-muted hover:text-fg"}
               >
                 {localeLabels[l]}
               </a>
             ) : (
-              <span lang={l} aria-disabled="true" className="text-ink-muted/50">
+              <span lang={l} aria-disabled="true" className="text-muted/50">
                 {localeLabels[l]}
               </span>
             )}

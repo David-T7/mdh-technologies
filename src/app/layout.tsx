@@ -4,6 +4,9 @@ import { fontVariables } from "@/lib/fonts";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MotionProvider } from "@/components/Reveal";
+import { BackToTop } from "@/components/BackToTop";
+import { Interactions } from "@/components/Interactions";
+import { themeColors, themeScript } from "@/lib/theme";
 import { company, site } from "@/content/site";
 
 const description = site.hero.body;
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0c",
+  themeColor: themeColors.light,
   colorScheme: "light dark",
 };
 
@@ -40,23 +43,21 @@ const organizationJsonLd = {
   legalName: company.legalName,
   url: company.url,
   logo: `${company.url}/apple-icon`,
-  email: company.email,
+  email: company.infoEmail,
   telephone: company.phone.replace(/\s/g, ""),
-  foundingDate: company.founded,
   address: {
     "@type": "PostalAddress",
     streetAddress: company.address.street,
     addressLocality: company.address.city,
     addressCountry: company.address.country,
   },
-  sameAs: [company.github],
   founder: site.team.members.map((m) => ({ "@type": "Person", name: m.name })),
   makesOffer: {
     "@type": "Offer",
     itemOffered: {
       "@type": "SoftwareApplication",
       name: site.product.name,
-      url: company.product.app,
+      url: company.product.telegram,
       applicationCategory: "EducationalApplication",
     },
   },
@@ -64,7 +65,10 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="en" data-theme="light" className={fontVariables} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-dvh">
         <script
           type="application/ld+json"
@@ -76,6 +80,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             {children}
           </main>
           <Footer />
+          <BackToTop />
+          <Interactions />
         </MotionProvider>
       </body>
     </html>

@@ -8,7 +8,7 @@ import { Arrow } from "./Button";
 const f = site.contact.form;
 
 const fieldCls =
-  "peer w-full border-0 border-b border-line bg-transparent px-0 pb-3 pt-7 text-lg text-fg outline-none transition-colors placeholder:text-transparent focus:border-gold focus:ring-0";
+  "peer w-full border-0 border-b border-line bg-transparent px-0 pb-3 pt-7 text-lg text-fg outline-none transition-colors placeholder:text-transparent focus:border-brand focus:ring-0";
 const labelCls =
   "pointer-events-none absolute left-0 top-7 text-muted transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:tracking-[0.12em] peer-focus:uppercase peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.12em]";
 
@@ -75,7 +75,7 @@ export function ContactForm({ canSend }: { canSend: boolean }) {
     ]
       .filter((l, i) => l || i < 2)
       .join("\n");
-    window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${company.infoEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   if (state.status === "sent") {
@@ -112,7 +112,7 @@ export function ContactForm({ canSend }: { canSend: boolean }) {
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex min-h-14 items-center justify-between gap-6 bg-gold px-7 font-medium text-ink transition-colors hover:bg-[#e6a641] disabled:opacity-60 md:justify-start"
+          className="btn-shine group inline-flex min-h-14 items-center justify-between gap-6 bg-brand px-7 font-medium text-on-brand transition-colors hover:bg-brand-hover disabled:opacity-60 md:justify-start"
         >
           {pending ? f.sending : f.submit}
           <Arrow />
@@ -125,8 +125,8 @@ export function ContactForm({ canSend }: { canSend: boolean }) {
         {state.status === "error" && (
           <>
             {f.error}{" "}
-            <a href={`mailto:${company.email}`} className="u-link text-accent">
-              {company.email}
+            <a href={`mailto:${company.infoEmail}`} className="u-link text-accent">
+              {company.infoEmail}
             </a>
           </>
         )}

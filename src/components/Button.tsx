@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Variant = "gold" | "line" | "plain";
+type Variant = "primary" | "line" | "plain";
 
 type ButtonProps = {
   href: string;
@@ -16,8 +16,8 @@ const base =
   "group inline-flex min-h-12 items-center gap-3 text-[0.95rem] font-medium transition-colors duration-300";
 
 const variants: Record<Variant, string> = {
-  gold: "bg-gold px-6 text-ink hover:bg-[#e6a641]",
-  line: "border border-current/30 px-6 hover:border-current",
+  primary: "btn-shine bg-brand px-6 text-on-brand hover:bg-brand-hover",
+  line: "border border-current/30 px-6 hover:border-brand",
   plain: "px-0",
 };
 
@@ -36,7 +36,7 @@ export function Arrow({ className = "" }: { className?: string }) {
 export function Button({
   href,
   children,
-  variant = "gold",
+  variant = "primary",
   external,
   className = "",
   arrow = true,

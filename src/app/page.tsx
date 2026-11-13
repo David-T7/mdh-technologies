@@ -4,7 +4,6 @@ import {
   Hero,
   HowWeWork,
   InsideProduct,
-  NameOriginSection,
   Services,
   TeamSection,
   WhyWeExist,
@@ -20,7 +19,6 @@ export default function Home() {
       <Services />
       <HowWeWork />
       <TeamSection />
-      <NameOriginSection />
       <Contact />
     </>
   );

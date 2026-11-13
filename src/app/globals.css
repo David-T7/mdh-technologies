@@ -1,41 +1,87 @@
 @import "tailwindcss";
 
 /*
- * ── BRAND TOKENS ────────────────────────────────────────────────────────────
- * PLACEHOLDER palette until the official letterhead/logo colours are supplied.
- * Swap the six brand values below and the whole site follows.
+ * ── THEMES ──────────────────────────────────────────────────────────────────
+ * Ink (near-black), paper (warm white) and Ethiopian gold.
+ * Switched by data-theme on <html> (set before paint by the inline script in
+ * layout.tsx and by <ThemeToggle/>).
+ * "Ink" sections (header, heroes, footer, feature bands) use the --ink-* set.
  */
-:root {
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
   --brand-ink: #0b0b0c;
   --brand-paper: #f7f5f0;
   --brand-gold: #d9962b;
-  --brand-green: #1e6b57;
-  --brand-graphite: #1f1f1f;
-  --brand-stone: #5e5e5e;
+  --brand-gold-soft: #e6a641;
 
-  /* Semantic tokens — light mode */
+  /* Page */
   --bg: var(--brand-paper);
-  --fg: var(--brand-graphite);
-  --muted: var(--brand-stone);
-  --line: #dcd8cf;
-  --surface: #efece4;
-  --link: var(--brand-green);
+  --fg: #1f1f1f;
+  --muted: #57554f;
+  --line: #d8d0c0;
+  /* Warm sand: the soft middle tone between paper and ink */
+  --surface: #ebe4d5;
+  --card: #fbfaf7;
+  --link: #1e6b57;
+  --highlight: #b57a1c;
   --confirm: #8a5a12;
 
-  /* Ink sections (always dark) */
+  /* Accent fill (buttons, markers) and the text on it */
+  --brand: var(--brand-gold);
+  --brand-hover: var(--brand-gold-soft);
+  --on-brand: var(--brand-ink);
+  --glow: rgb(217 150 43 / 0.14);
+
+  /* Ink sections (heroes, story band, CTA, footer) — near-black in both themes,
+     so the light theme alternates paper and ink instead of being all white */
   --ink-bg: var(--brand-ink);
   --ink-fg: #f2efe8;
   --ink-muted: #a8a59e;
   --ink-line: #2a2a2b;
+  --ink-surface: #151516;
+  --ink-highlight: var(--brand-gold);
+  --ink-link: var(--brand-gold);
+  --ink-glow: rgb(217 150 43 / 0.18);
 
+  --selection-bg: var(--brand-gold);
+  --selection-fg: var(--brand-ink);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #131312;
+  --fg: #ece9e2;
+  --muted: #a3a09a;
+  --line: #2c2b29;
+  --surface: #1b1a19;
+  --card: #181716;
+  --link: #6fbfa6;
+  --highlight: var(--brand-gold);
+  --confirm: var(--brand-gold);
+  --glow: rgb(217 150 43 / 0.12);
+
+  --ink-bg: var(--brand-ink);
+  --ink-fg: #f2efe8;
+  --ink-muted: #a8a59e;
+  --ink-line: #2a2a2b;
+  --ink-surface: #151516;
+  --ink-highlight: var(--brand-gold);
+  --ink-link: var(--brand-gold);
+  --ink-glow: rgb(217 150 43 / 0.18);
+}
+
+:root {
   --gutter: 1.25rem;
-  --header-h: 4rem;
+  --header-h: 5.25rem;
 }
 
 @media (min-width: 768px) {
   :root {
     --gutter: 2.5rem;
-    --header-h: 4.5rem;
+    --header-h: 6.5rem;
   }
 }
 
@@ -45,32 +91,22 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #131312;
-    --fg: #ece9e2;
-    --muted: #a3a09a;
-    --line: #2c2b29;
-    --surface: #1b1a19;
-    --link: #6fbfa6;
-    --confirm: var(--brand-gold);
-  }
-}
-
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-surface: var(--surface);
+  --color-card: var(--card);
   --color-accent: var(--link);
+  --color-highlight: var(--highlight);
   --color-ink: var(--ink-bg);
   --color-ink-fg: var(--ink-fg);
   --color-ink-muted: var(--ink-muted);
   --color-ink-line: var(--ink-line);
-  --color-gold: var(--brand-gold);
-  --color-green: var(--brand-green);
-  --color-paper: var(--brand-paper);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
 
   --font-sans: var(--font-inter), var(--font-ethiopic-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument), var(--font-ethiopic-serif), Georgia, serif;
@@ -96,26 +132,60 @@ body {
 }
 
 ::selection {
-  background: var(--brand-gold);
-  color: var(--brand-ink);
+  background: var(--selection-bg);
+  color: var(--selection-fg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand-gold);
+  outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* An "ink" section: always dark, in both colour modes */
-.ink {
+/* An "ink" section: a near-black band in both themes.
+   A "band" section is ink in dark mode but plain paper in light mode. With the
+   warm-sand --surface sections in between, the light theme steps
+   paper → sand → ink instead of being all one shade. */
+.ink,
+[data-theme="dark"] .band {
   background: var(--ink-bg);
   color: var(--ink-fg);
   --fg: var(--ink-fg);
   --muted: var(--ink-muted);
   --line: var(--ink-line);
-  --surface: #151516;
-  --link: var(--brand-gold);
-  --confirm: var(--brand-gold);
+  --surface: var(--ink-surface);
+  --card: var(--ink-surface);
+  --link: var(--ink-link);
+  --highlight: var(--ink-highlight);
+  --confirm: var(--ink-highlight);
+  --brand: var(--brand-gold);
+  --brand-hover: var(--brand-gold-soft);
+  --on-brand: var(--brand-ink);
+  --glow: var(--ink-glow);
+}
+
+:root:not([data-theme="dark"]) .band {
+  background: var(--bg);
+  color: var(--fg);
+  /* ink-* utilities inside a band read as the light palette here */
+  --ink-fg: var(--fg);
+  --ink-muted: var(--muted);
+  --ink-line: var(--line);
+  --ink-surface: var(--card);
+  --ink-highlight: var(--highlight);
+  --ink-link: var(--link);
+}
+
+/* Smooth colour change when the theme is toggled */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    fill 0.35s ease !important;
 }
 
 .wrap {
@@ -225,7 +295,109 @@ body {
   animation-delay: 0.5s;
 }
 
-.fade-edge-l {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%);
-  mask-image: linear-gradient(to right, transparent, #000 45%);
+
+/* Theme toggle: show the icon/label for the current theme only */
+[data-theme="dark"] .theme-icon-light,
+[data-theme="dark"] .theme-label-light,
+:root:not([data-theme="dark"]) .theme-icon-dark,
+:root:not([data-theme="dark"]) .theme-label-dark {
+  display: none;
+}
+
+/* ── Interaction layer ─────────────────────────────────────────────────── */
+
+/* Cursor spotlight: a soft glow that follows the pointer (see Interactions.tsx) */
+[data-spotlight] {
+  position: relative;
+  isolation: isolate;
+}
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    var(--glow),
+    transparent 65%
+  );
+}
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+/* Large ambient variant for heroes: always on, drifts with the pointer */
+[data-spotlight="hero"]::before {
+  opacity: 1;
+  transition: background-position 0.2s linear;
+  background: radial-gradient(
+    760px circle at var(--mx, 78%) var(--my, 22%),
+    var(--glow),
+    transparent 62%
+  );
+}
+
+/* 3D tilt toward the pointer (phone mockups) */
+[data-tilt] {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Shine sweep across gold buttons */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-shine:hover::after,
+.btn-shine:focus-visible::after {
+  transform: translateX(120%);
+}
+
+
+/* Lift for cards that sit in a grid */
+.lift {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.5s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--line));
+  box-shadow: 0 24px 48px -32px rgb(0 0 0 / 0.35);
+}
+
+/* FAQ: animate <details> open/close where supported (falls back to instant) */
+:root {
+  interpolate-size: allow-keywords;
+}
+details.faq::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    content-visibility 0.45s allow-discrete;
+}
+details.faq[open]::details-content {
+  block-size: auto;
+}
+details.faq summary {
+  transition: color 0.3s ease;
+}
+details.faq summary:hover {
+  color: var(--highlight);
 }

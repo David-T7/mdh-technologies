@@ -22,6 +22,7 @@ export function ServiceList({ items, cta }: { items: Service[]; cta: string }) {
         return (
           <li
             key={s.number}
+            suppressHydrationWarning data-spotlight
             className="border-t border-line"
             onMouseEnter={() => {
               if (window.matchMedia("(hover: hover)").matches) setOpen(i);

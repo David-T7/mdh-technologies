@@ -4,9 +4,7 @@ import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { StoryPanel } from "@/content/site";
 import { PhoneFrame } from "./PhoneFrame";
-import { fidelRows, geezNumeral } from "./Texture";
 
-const glyphs = fidelRows.map((row) => row[0]);
 
 function screenshotPath(i: number) {
   return `/public/products/etlh-0${i + 1}.png`;
@@ -75,7 +73,6 @@ export function StickyStory({ panels }: { panels: StoryPanel[] }) {
                   <PhoneFrame
                     src={current.screenshot}
                     alt={current.screenshotAlt}
-                    glyph={glyphs[active]}
                     expectedPath={screenshotPath(active)}
                   />
                 </m.div>
@@ -83,9 +80,9 @@ export function StickyStory({ panels }: { panels: StoryPanel[] }) {
             </div>
             <p
               aria-hidden="true"
-              className="mt-2 whitespace-nowrap font-ethiopic text-[1.3rem] leading-none text-gold"
+              className="mt-2 whitespace-nowrap font-mono text-sm tabular-nums leading-none text-highlight"
             >
-              {geezNumeral(active + 1)} / {geezNumeral(panels.length)}
+              {String(active + 1).padStart(2, "0")} / {String(panels.length).padStart(2, "0")}
             </p>
           </div>
         </div>
@@ -134,7 +131,6 @@ export function StickyStory({ panels }: { panels: StoryPanel[] }) {
               <PhoneFrame
                 src={p.screenshot}
                 alt={p.screenshotAlt}
-                glyph={glyphs[i]}
                 expectedPath={screenshotPath(i)}
                 className="max-w-[230px]"
               />
@@ -159,7 +155,7 @@ export function StickyStory({ panels }: { panels: StoryPanel[] }) {
             >
               <span
                 className={`block h-[2px] w-full transition-colors duration-300 ${
-                  slide === i ? "bg-gold" : "bg-line"
+                  slide === i ? "bg-brand" : "bg-line"
                 }`}
               />
             </button>

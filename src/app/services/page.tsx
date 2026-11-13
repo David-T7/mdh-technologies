@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Contact, PageHero, ServicesDetailed } from "@/components/sections";
+import { PageHero, ServicesDetailed } from "@/components/sections";
+import { CtaBand, FaqList, FeatureGrid, Steps } from "@/components/blocks";
 import { site } from "@/content/site";
 
 const p = site.pages.services;
@@ -16,9 +17,10 @@ export default function ServicesPage() {
     <>
       <PageHero eyebrow={p.title} heading={p.heading} intro={p.intro} />
       <ServicesDetailed />
-      <div className="border-t border-line">
-        <Contact />
-      </div>
+      <Steps block={p.process} tone="surface" />
+      <FeatureGrid block={p.conditions} />
+      <FaqList block={p.faq} tone="surface" />
+      <CtaBand cta={p.cta} />
     </>
   );
 }
