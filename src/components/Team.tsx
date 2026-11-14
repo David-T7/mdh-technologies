@@ -97,7 +97,7 @@ function FounderCard({ member, cta }: { member: Member; cta: string }) {
 export function Team({ members, closing, cta }: { members: Member[]; closing: string; cta: string }) {
   return (
     <div>
-      <div className="grid gap-16 md:grid-cols-2 md:gap-10 lg:gap-16">
+      <div className="grid gap-16 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:gap-12">
         {members.map((m, i) => (
           <Reveal key={m.slug} delay={i * 0.1}>
             <FounderCard member={m} cta={cta} />

@@ -44,7 +44,7 @@ When a fact is confirmed, delete its `confirm: "…"` line.
 |---|---|---|
 | Product screenshot (flagship) | `public/products/etlh-telegram.png` | `product.heroScreenshot` |
 | Product story screens (6) | `public/products/etlh-*.png` | each `story.panels[n].screenshot` |
-| Founder portraits | `public/team/<slug>.jpg` (or .png/.webp) — `mhreteabe`, `dawit` | picked up automatically; no code change |
+| Founder portraits | `public/team/<slug>.jpg` (or .png/.webp) — `mhreteabe`, `dawit`, `hemen` | picked up automatically; no code change |
 | Official logo | `public/brand/` (originals) · `src/lib/brand.ts` (paths used by the site) | done — rendered inline by `src/components/Logo.tsx`, icons and OG image |
 
 Use real screenshots and photos only — portrait 9:19.5 for app screens, 4:5 for portraits. Images are optimised and lazy-loaded automatically by `next/image`.

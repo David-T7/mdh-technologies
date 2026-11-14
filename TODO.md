@@ -5,9 +5,10 @@ Every item below is visible on the site as a gold `[CONFIRM: …]` tag or an "IM
 ## Facts to confirm — `[CONFIRM]`
 
 - [ ] **Domain** — `https://mdhtechnologies.com` is a placeholder. Update `company.url` once final.
-- [ ] **Mhreteabe Tesfaye Dula** — title "Co-founder & CEO".
-- [ ] **Dawit Tesfaye Dula** — title "Co-founder, Engineering & Product".
-- [ ] **Founder profiles** (`/team/mhreteabe`, `/team/dawit`) — written from the CVs; each founder should read and approve theirs. Mhreteabe's Meseret AI role was left out on purpose — add it if wanted.
+- [ ] **Mhreteabe Tesfaye** — title "Co-founder & CEO".
+- [ ] **Dawit Tesfaye** — title "Co-founder, Engineering & Product".
+- [ ] **Hemen Tesfaye** — title "Co-founder, Data & AI", languages, and a LinkedIn link if wanted. Portrait (`public/team/hemen.jpg`) is cropped from her student ID — swap in a better photo when available.
+- [ ] **Founder profiles** (`/team/mhreteabe`, `/team/dawit`, `/team/hemen`) — written from the CVs; each founder should read and approve theirs. Mhreteabe's Meseret AI role was left out on purpose — add it if wanted.
 - [ ] **ERP & school systems** — keep this service on the site? (Remove the item from `services.items` if not.)
 - [ ] **Brand colours** — ink, paper and gold (`--brand-*` in `src/app/globals.css`). Confirm the exact gold if the brand has an official hex.
 
@@ -18,7 +19,7 @@ Written from the brief's notes rather than supplied verbatim — please read and
 - [ ] Hero headline — options are in a comment above `hero.headline` (currently "Life doesn't have to be *this hard.*").
 - [ ] `/about` intro and the five "Why we exist" beliefs (`why.beliefs`).
 - [ ] `/services` paragraphs (`services.items[].detail`) and the services heading/intro.
-- [ ] Team heading "The people behind it." and closing line "Two siblings, building from Addis Ababa." and the footer line "An Ethiopian technology company. Built in Addis Ababa."
+- [ ] Team heading "The people behind it." and closing line "Three siblings, building from Addis Ababa and Messina." and the footer line "An Ethiopian technology company. Built in Addis Ababa."
 - [ ] Hero eyebrow "Addis Ababa — Est. 2026".
 
 ## Images — `IMAGE PLACEHOLDER`

@@ -424,12 +424,12 @@ const en: SiteCopy = {
   team: {
     eyebrow: "Founders",
     heading: "The people behind it.",
-    closing: "Two siblings, building from Addis Ababa.",
+    closing: "Three siblings, building from Addis Ababa and Messina.",
     profileCta: "Full profile",
     members: [
       {
         slug: "mhreteabe",
-        name: "Mhreteabe Tesfaye Dula",
+        name: "Mhreteabe Tesfaye",
         initials: "MT",
         role: "Co-founder & CEO",
         confirm: "Title",
@@ -526,7 +526,7 @@ const en: SiteCopy = {
       },
       {
         slug: "dawit",
-        name: "Dawit Tesfaye Dula",
+        name: "Dawit Tesfaye",
         initials: "DT",
         role: "Co-founder, Engineering & Product",
         confirm: "Title",
@@ -629,6 +629,67 @@ const en: SiteCopy = {
           languages: ["Amharic — native", "English"],
         },
       },
+      {
+        slug: "hemen",
+        name: "Hemen Tesfaye",
+        initials: "HT",
+        role: "Co-founder, Data & AI",
+        confirm: "Title",
+        location: "Messina, Italy",
+        bio: "Computer Science and Data Analysis student at the University of Messina. Evaluates and stress-tests AI models, and organises research into structured knowledge.",
+        links: [],
+        profile: {
+          headline: "Computer Science & Data Analysis · AI Evaluation",
+          summary:
+            "Computer Science and Data Analysis student with a strong mathematical foundation and a knack for pattern recognition. Works closely with large language models — designing prompts, checking answers for accuracy and logic, and turning unstructured research into structured knowledge.",
+          highlights: ["LLM evaluation", "Prompt engineering", "Data annotation"],
+          experience: [
+            {
+              title: "Conversational AI & Prompt Engineering",
+              org: "Self-directed",
+              period: "2023 – present",
+              points: [
+                "Designs and iterates multi-turn prompts to get specific, structured output from AI models across technical and creative domains.",
+                "Evaluates AI responses for factual accuracy, logical consistency and fit to the brief — independent model quality assurance.",
+              ],
+            },
+            {
+              title: "System Architecture & Workflow Design",
+              org: "Self-directed project · Notion",
+              period: "2025 – present",
+              points: [
+                "Built an interconnected personal operating system in Notion to track deadlines, task hierarchies and behavioural data.",
+                "Designed relational databases that organise unstructured schedule data and reduce cognitive load.",
+              ],
+            },
+            {
+              title: "Independent Researcher & Data Synthesiser",
+              org: "Self-directed",
+              period: "2021 – present",
+              points: [
+                "Multi-year deep dives into health, trichology and psychology, built into structured knowledge bases.",
+                "Cross-references multiple sources for factual accuracy, using tools such as NotebookLM.",
+              ],
+            },
+          ],
+          projects: [],
+          education: [
+            {
+              degree: "BSc, Computer Science & Data Analysis",
+              school: "University of Messina",
+              period: "Expected 2028",
+              note: "Messina, Italy",
+            },
+          ],
+          skills: [
+            { group: "AI & data", items: ["Prompt engineering", "LLM evaluation", "Data annotation", "Fact-checking"] },
+            { group: "Maths & logic", items: ["Calculus", "Discrete mathematics", "Computational logic", "Data structures & algorithms"] },
+            { group: "Tools", items: ["Notion", "NotebookLM"] },
+          ],
+          recognition: [],
+          languages: ["Amharic — native", "English"],
+        },
+      },
     ],
   },
 
@@ -660,7 +721,7 @@ const en: SiteCopy = {
         "Why MDH Technologies exists, how we work, and the founders behind ET Learning Hub.",
       heading: "We build things that make life a little less hard.",
       intro:
-        "MDH Technologies PLC is an Ethiopian technology company based in Addis Ababa, founded by siblings Mhreteabe and Dawit.",
+        "MDH Technologies PLC is an Ethiopian technology company based in Addis Ababa, founded by siblings Mhreteabe, Dawit and Hemen.",
       purpose: {
         eyebrow: "What drives us",
         items: [
@@ -684,7 +745,7 @@ const en: SiteCopy = {
         items: [
           { label: "Legal name", value: company.legalName },
           { label: "Office", value: company.address.short },
-          { label: "Founders", value: "Mhreteabe Tesfaye Dula and Dawit Tesfaye Dula" },
+          { label: "Founders", value: "Mhreteabe Tesfaye, Dawit Tesfaye and Hemen Tesfaye" },
           { label: "Product", value: "ET Learning Hub — beta, live now" },
           {
             label: "Services",

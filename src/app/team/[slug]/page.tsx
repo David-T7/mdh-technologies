@@ -252,6 +252,7 @@ async function Profile({ params }: { params: Promise<{ slug: string }> }) {
               ))}
             </div>
 
+            {p.recognition.length > 0 && (
             <div className="mt-16">
               <SectionHeading eyebrow="Recognition" />
               <ul className="mt-6 border-b border-line">
@@ -266,6 +267,7 @@ async function Profile({ params }: { params: Promise<{ slug: string }> }) {
                 ))}
               </ul>
             </div>
+            )}
           </div>
         </div>
       </section>
